@@ -36,6 +36,7 @@ export function MessageList(){
         setMessages(prevState => [
           messagesQueue[0],
           prevState[0],
+          prevState[1],
         ].filter(Boolean))
 
         messagesQueue.shift()
@@ -47,11 +48,6 @@ export function MessageList(){
   useEffect(()=> {
     // chamada api
     api.get<Message[]>('/messages/last3').then(response => {
-      
-      response.data.map(key => {
-        console.log("id====="+key.id)
-      })
-
       setMessages(response.data)
     }) 
 
@@ -84,6 +80,10 @@ export function MessageList(){
               </li>
           )
         })}
+
+
+        
+        
 
         
       </ul>
